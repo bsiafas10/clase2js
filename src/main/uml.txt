@@ -1,0 +1,43 @@
+@startuml
+abstract Producto {
+String descripcion
+{method} precio() : number
+{method} stock() : number
+}
+
+abstract Aplicable{
+Producto producto
+{method} precio() : number
+{method} stock() : number
+}
+
+class Packaging{
+{method} precio() : number
+}
+
+class DescuentoFijo{
+{method} precio() : number
+}
+
+class ProductoSimple {
+String descripcion
+number stock
+{method} precio() : number
+{method} stock() : number
+}
+
+class Combo {
+productos list<Producto>
+{method} precio() : number
+{method} stock() : number
+}
+
+Producto <|-- Combo
+Producto <|-- ProductoSimple
+Combo --> Producto
+
+Aplicable <|-- DescuentoFijo
+Aplicable <|-- Packaging
+Producto <|-- Aplicable
+Producto <-- Aplicable
+@enduml
